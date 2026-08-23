@@ -1,4 +1,4 @@
-function fetchLeaderboard() {
+async function fetchLeaderboard() {
     try {
         const response = await fetch('players.json');
         const data =.json = await response.json();
