@@ -1,50 +1,70 @@
 {
-  "Astor": {
-    "name": "Serral",
-    "elo": 1232,
-    "wins": 1,
-    "losses": 0
+  "players": {
+    "Astor": {
+      "name": "Serral",
+      "elo": 1232,
+      "wins": 1,
+      "losses": 0
+    },
+    "Gladiator": {
+      "name": "Reynor",
+      "elo": 1141,
+      "wins": 0,
+      "losses": 3
+    },
+    "Goku2001": {
+      "name": "Maru",
+      "elo": 1243,
+      "wins": 3,
+      "losses": 0
+    },
+    "Snake": {
+      "name": "Clem",
+      "elo": 1184,
+      "wins": 0,
+      "losses": 1
+    },
+    "Evangelyon": {
+      "name": "Clem",
+      "elo": 1184,
+      "wins": 0,
+      "losses": 1
+    },
+    "Fer": {
+      "name": "Clem",
+      "elo": 1184,
+      "wins": 0,
+      "losses": 1
+    },
+    "Clem": {
+      "name": "Clem",
+      "elo": 1216,
+      "wins": 1,
+      "losses": 0
+    },
+    "Reynor": {
+      "name": "Reynor",
+      "elo": 1184,
+      "wins": 0,
+      "losses": 1
+    },
+    "Verga": {
+      "name": "Verga",
+      "victorias": 1,
+      "puntos": 3
+    },
+    "Chepa": {
+      "name": "Chepa",
+      "victorias": 0,
+      "puntos": 0
+    }
   },
-  "Gladiator": {
-    "name": "Reynor",
-    "elo": 1141,
-    "wins": 0,
-    "losses": 3
-  },
-  "Goku2001": {
-    "name": "Maru",
-    "elo": 1243,
-    "wins": 3,
-    "losses": 0
-  },
-  "Snake": {
-    "name": "Clem",
-    "elo": 1184,
-    "wins": 0,
-    "losses": 1
-  },
-  "Evangelyon": {
-    "name": "Clem",
-    "elo": 1184,
-    "wins": 0,
-    "losses": 1
-  },
-  "Fer": {
-    "name": "Clem",
-    "elo": 1184,
-    "wins": 0,
-    "losses": 1
-  },
-  "Clem": {
-    "name": "Clem",
-    "elo": 1216,
-    "wins": 1,
-    "losses": 0
-  },
-  "Reynor": {
-    "name": "Reynor",
-    "elo": 1184,
-    "wins": 0,
-    "losses": 1
-  }
+  "history": [
+    {
+      "winner": "Verga",
+      "loser": "Chepa",
+      "points_gained": 3,
+      "score_string": "2-0"
+    }
+  ]
 }
