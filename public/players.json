@@ -22,8 +22,8 @@
     },
     "Fer": {
       "name": "Fer",
-      "victorias": 1,
-      "puntos": 3
+      "victorias": 0,
+      "puntos": 0
     },
     "Snake": {
       "name": "Snake",
@@ -49,12 +49,6 @@
       "loser": "Chepa",
       "points_gained": 2,
       "score_string": "1-0"
-    },
-    {
-      "winner": "Fer",
-      "loser": "Snake",
-      "points_gained": 3,
-      "score_string": "2-0"
     }
   ]
 }
