@@ -2,8 +2,8 @@
   "players": {
     "Astor": {
       "name": "Astor",
-      "victorias": 1,
-      "puntos": 2
+      "victorias": 2,
+      "puntos": 4
     },
     "Chepa": {
       "name": "Chepa",
@@ -33,6 +33,12 @@
       "loser": "Evangelyon",
       "points_gained": 3,
       "score_string": "2-0"
+    },
+    {
+      "winner": "Astor",
+      "loser": "Chepa",
+      "points_gained": 2,
+      "score_string": "1-0"
     }
   ]
 }
