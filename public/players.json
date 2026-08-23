@@ -2,8 +2,8 @@
   "players": {
     "Astor": {
       "name": "Astor",
-      "victorias": 1,
-      "puntos": 2
+      "victorias": 0,
+      "puntos": 0
     },
     "Chepa": {
       "name": "Chepa",
@@ -31,12 +31,5 @@
       "puntos": 0
     }
   },
-  "history": [
-    {
-      "winner": "Astor",
-      "loser": "Chepa",
-      "points_gained": 2,
-      "score_string": "1-0"
-    }
-  ]
+  "history": []
 }
