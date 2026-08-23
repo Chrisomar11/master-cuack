@@ -19,6 +19,16 @@
       "name": "Evangelyon",
       "victorias": 0,
       "puntos": 0
+    },
+    "Fer": {
+      "name": "Fer",
+      "victorias": 1,
+      "puntos": 3
+    },
+    "Snake": {
+      "name": "Snake",
+      "victorias": 0,
+      "puntos": 0
     }
   },
   "history": [
@@ -39,6 +49,12 @@
       "loser": "Chepa",
       "points_gained": 2,
       "score_string": "1-0"
+    },
+    {
+      "winner": "Fer",
+      "loser": "Snake",
+      "points_gained": 3,
+      "score_string": "2-0"
     }
   ]
 }
