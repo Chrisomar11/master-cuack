@@ -3,49 +3,49 @@
     "Astor": {
       "name": "Serral",
       "elo": 1232,
-      "wins": 1,
+      "victorias": 1,
       "losses": 0
     },
     "Gladiator": {
       "name": "Reynor",
       "elo": 1141,
-      "wins": 0,
+      "victorias": 0,
       "losses": 3
     },
     "Goku2001": {
       "name": "Maru",
       "elo": 1243,
-      "wins": 3,
+      "victorias": 3,
       "losses": 0
     },
     "Snake": {
       "name": "Clem",
       "elo": 1184,
-      "wins": 0,
+      "victorias": 0,
       "losses": 1
     },
     "Evangelyon": {
       "name": "Clem",
       "elo": 1184,
-      "wins": 0,
+      "victorias": 0,
       "losses": 1
     },
     "Fer": {
       "name": "Clem",
       "elo": 1184,
-      "wins": 0,
+      "victorias": 0,
       "losses": 1
     },
     "Clem": {
       "name": "Clem",
       "elo": 1216,
-      "wins": 1,
+      "victorias": 1,
       "losses": 0
     },
     "Reynor": {
       "name": "Reynor",
       "elo": 1184,
-      "wins": 0,
+      "victorias": 0,
       "losses": 1
     },
     "Verga": {
