@@ -34,5 +34,17 @@
     "elo": 1184,
     "wins": 0,
     "losses": 1
+  },
+  "Clem": {
+    "name": "Clem",
+    "elo": 1216,
+    "wins": 1,
+    "losses": 0
+  },
+  "Reynor": {
+    "name": "Reynor",
+    "elo": 1184,
+    "wins": 0,
+    "losses": 1
   }
 }
