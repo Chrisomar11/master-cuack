@@ -1,1 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StarCraft 2 Match Rankings</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>🏆 StarCraft II Community Leaderboard</h1>
+        <p>Track your matches and calculate skills using the Elo System</p>
+    </header>
+
+    <main class="container">
+        <!-- Section to Log Matches -->
+        <section class="form-section">
+            <h2>Record a Match</h2>
+            <form id="matchForm">
+                <div class="input-group">
+                    <label for="winner">Winner Name:</label>
+                    <input type="text" id="winner" required placeholder="e.g., Serral">
+                </div>
+                <div class="input-group">
+                    <label for="loser">Loser Name:</label>
+                    <input type="text" id="loser" required placeholder="e.g., Reynor">
+                </div>
+                <button type="submit">Submit Match Result</button>
+            </form>
+        </section>
+
+        <!-- Section to Show Leaderboard -->
+        <section class="leaderboard-section">
+            <h2>Current Player Rankings</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Player</th>
+                        <th>Wins</th>
+                        <th>Losses</th>
+                        <th>Elo Points</th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboardBody">
+                    <!-- JavaScript will fill this in dynamically -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
 
