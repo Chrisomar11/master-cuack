@@ -1,0 +1,12 @@
+{
+  "name": "master-cuack-backend",
+  "version": "1.0.0",
+  "description": "StarCraft 2 Ranking Backend Server",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "Astor": {
+    "name": "Serral",
+    "elo": 1232,
+    "wins": 1,
+    "losses": 0
+  },
+  "Gladiator": {
+    "name": "Reynor",
+    "elo": 1168,
+    "wins": 0,
+    "losses": 1
+  },
+  "Goku2001": {
+    "name": "Maru",
+    "elo": 1216,
+    "wins": 1,
+    "losses": 0
+  },
+  "Snake": {
+    "name": "Clem",
+    "elo": 1184,
+    "wins": 0,
+    "losses": 1
+  },
+  "Evangelyon": {
+    "name": "Clem",
+    "elo": 1184,
+    "wins": 0,
+    "losses": 1
+  },
+  "Fer": {
+    "name": "Clem",
+    "elo": 1184,
+    "wins": 0,
+    "losses": 1
+  }
+}
