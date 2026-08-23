@@ -7,14 +7,14 @@
   },
   "Gladiator": {
     "name": "Reynor",
-    "elo": 1154,
+    "elo": 1141,
     "wins": 0,
-    "losses": 2
+    "losses": 3
   },
   "Goku2001": {
     "name": "Maru",
-    "elo": 1230,
-    "wins": 2,
+    "elo": 1243,
+    "wins": 3,
     "losses": 0
   },
   "Snake": {
