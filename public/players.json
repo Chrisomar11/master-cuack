@@ -12,8 +12,8 @@
     },
     "Goku2001": {
       "name": "Goku2001",
-      "victorias": 1,
-      "puntos": 1
+      "victorias": 0,
+      "puntos": 0
     },
     "Evangelyon": {
       "name": "Evangelyon",
@@ -36,13 +36,5 @@
       "puntos": 0
     }
   },
-  "history": [
-    {
-      "winner": "Goku2001",
-      "loser": "Vergatron",
-      "points_gained": 1,
-      "score_string": "1-0",
-      "replay_url": "replays/Goku2001vsVergatron1-01787535600.SC2Replay"
-    }
-  ]
+  "history": []
 }
