@@ -5,8 +5,8 @@
       "victorias": 0,
       "puntos": 0
     },
-    "Chepa": {
-      "name": "Chepa",
+    "Snake": {
+      "name": "Snake",
       "victorias": 0,
       "puntos": 0
     },
@@ -25,18 +25,14 @@
       "victorias": 0,
       "puntos": 0
     },
-    "Snake": {
-      "name": "Snake",
+    "Gladiator": {
+      "name": "Gladiator",
       "victorias": 0,
       "puntos": 0
     }
   },
   "history": [
     {
-      "winner": "Goku2001",
-      "loser": "Evangelyon",
-      "points_gained": 3,
-      "score_string": "2-0"
     }
   ]
 }
