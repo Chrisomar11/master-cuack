@@ -3,47 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StarCraft 2 Match Rankings</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>StarCraft II Grid Tournament Matrix</title>
+    <style>
+        /* Dark StarCraft Theme Colors */
+        body {
+            background-color: #0b0f19;
+            color: #e2e8f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+            background: linear-gradient(180deg, #111827 0%, #0b0f19 100%);
+            border-bottom: 2px solid #00d2ff;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            margin: 0;
+            color: #00d2ff;
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+        }
+
+        .matrix-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #0b0f19;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto; /* Adds scrolling for small screens */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #0b0f19;
+        }
+
+        th, td {
+            border: 1px solid #1e293b;
+            padding: 10px;
+            text-align: center;
+            min-width: 100px;
+        }
+
+        th {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* Diagonal self-match cell style */
+        .blocker-cell {
+            background-color: #0f172a;
+            color: #475569;
+        }
+
+        /* Unplayed match cell style */
+        .unplayed-cell {
+            background-color: #1e293b;
+            color: #94a3b8;
+        }
+
+        /* Row Header Player Names style */
+        .player-row-header {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-weight: bold;
+            text-align: left;
+            padding-left: 15px;
+            min-width: 130px;
+        }
+
+        /* Far-right statistics columns style */
+        .stats-header {
+            background-color: #334155;
+            color: #00d2ff;
+        }
+
+        .stats-cell {
+            background-color: #111827;
+            color: #e2e8f0;
+        }
+
+        .points-cell {
+            color: #00d2ff;
+            font-weight: bold;
+        }
+
+        /* Replay Download Button style */
+        .replay-btn {
+            display: inline-block;
+            margin-top: 5px;
+            background-color: #0b0f19;
+            color: #00d2ff;
+            text-decoration: none;
+            font-size: 11px;
+            padding: 3px 6px;
+            border-radius: 4px;
+            border: 1px solid #00d2ff;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .replay-btn:hover {
+            background-color: #00d2ff;
+            color: #0b0f19;
+        }
+
+        .loser-cell .replay-btn {
+            color: #fca5a5;
+            border-color: #991b1b;
+        }
+
+        .loser-cell .replay-btn:hover {
+            background-color: #991b1b;
+            color: white;
+        }
+    </style>
 </head>
 <body>
 
     <header>
-        <h1>🏆 StarCraft II Community Leaderboard</h1>
-        <p>Track your matches and calculate skills using the Elo System</p>
+        <h1>⚔️ SC2 Cross-Table Tournament Matrix</h1>
     </header>
 
-    <main class="container">
-        <!-- Section to Log Matches -->
-        <section class="form-section">
-            <h2>Record a Match</h2>
-            <form id="matchForm">
-                <div class="input-group">
-                    <label for="winner">Winner Name:</label>
-                    <input type="text" id="winner" required placeholder="e.g., Serral">
-                </div>
-                <div class="input-group">
-                    <label for="loser">Loser Name:</label>
-                    <input type="text" id="loser" required placeholder="e.g., Reynor">
-                </div>
-                <button type="submit">Submit Match Result</button>
-            </form>
-        </section>
-
-        <!-- Section to Show Leaderboard -->
-        <!-- Section to Show Leaderboard Matrix Grid -->
-<section class="leaderboard-section">
-    <h2>Current Tournament Matrix</h2>
-    <div style="overflow-x: auto;">
-        <table>
-            <!-- Leave this empty, JavaScript generates everything now! -->
+    <div class="matrix-container">
+        <table id="matrixTable">
+            <!-- JavaScript will generate headers, scores, stats, and download links dynamically here -->
         </table>
     </div>
-</section>
-
-    </main>
 
     <script src="script.js"></script>
 </body>
 </html>
-
