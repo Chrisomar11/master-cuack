@@ -38,22 +38,6 @@
   },
   "history": [
     {
-      "winner": "Goku2001",
-      "loser": "Evangelyon",
-      "points_gained": 3,
-      "score_string": "2-0"
-    },
-    {
-      "winner": "Goku2001",
-      "loser": "Vergatron",
-      "points_gained": 1,
-      "score_string": "1-0"
-    },
-    {
-      "winner": "Vergatron",
-      "loser": "Fer",
-      "points_gained": 1,
-      "score_string": "1-0"
-    }
+     
   ]
 }
