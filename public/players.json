@@ -12,8 +12,8 @@
     },
     "Goku2001": {
       "name": "Goku2001",
-      "victorias": 1,
-      "puntos": 3
+      "victorias": 2,
+      "puntos": 6
     },
     "Evangelyon": {
       "name": "Evangelyon",
@@ -32,7 +32,12 @@
     }
   },
   "history": [
+    {},
     {
+      "winner": "Goku2001",
+      "loser": "Evangelyon",
+      "points_gained": 3,
+      "score_string": "2-0"
     }
   ]
 }
