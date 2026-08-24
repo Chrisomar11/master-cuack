@@ -1,3 +1,22 @@
+@@ -1,65 +1,59 @@
+{
+  "players": {
+    "Astor": {
+      "name": "Astor",
+      "victorias": 0,
+      "puntos": 0
+    },
+    "Snake": {
+      "name": "Snake",
+      "victorias": 0,
+      "puntos": 0
+    },
+    "Goku2001": {
+      "name": "Goku2001",
+      "victorias": 3,
+      "puntos": 5
+      "victorias": 2,
+      "puntos": 4
     },
     "Evangelyon": {
       "name": "Evangelyon",
@@ -38,8 +57,12 @@
       "loser": "Fer",
       "points_gained": 1,
       "score_string": "1-0"
+    },
+    {
+      "winner": "Goku2001",
+      "loser": "Gladiator",
+      "points_gained": 1,
+      "score_string": "1-0"
     }
-     
   ]
-}
 }
