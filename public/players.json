@@ -12,8 +12,8 @@
     },
     "Goku2001": {
       "name": "Goku2001",
-      "victorias": 2,
-      "puntos": 4
+      "victorias": 3,
+      "puntos": 5
     },
     "Evangelyon": {
       "name": "Evangelyon",
@@ -52,6 +52,12 @@
     {
       "winner": "Vergatron",
       "loser": "Fer",
+      "points_gained": 1,
+      "score_string": "1-0"
+    },
+    {
+      "winner": "Goku2001",
+      "loser": "Gladiator",
       "points_gained": 1,
       "score_string": "1-0"
     }
