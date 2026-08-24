@@ -32,8 +32,8 @@
     },
     "Vergatron": {
       "name": "Vergatron",
-      "victorias": 0,
-      "puntos": 0
+      "victorias": 1,
+      "puntos": 1
     }
   },
   "history": [
@@ -43,6 +43,13 @@
       "points_gained": 3,
       "score_string": "2-0",
       "replay_url": ""
+    },
+    {
+      "winner": "Vergatron",
+      "loser": "Evangelyon",
+      "points_gained": 1,
+      "score_string": "1-0",
+      "replay_url": "replays/VergatronvsEvangelyon1-01787534887.SC2Replay"
     }
   ]
 }
