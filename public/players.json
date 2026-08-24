@@ -32,8 +32,8 @@
     },
     "Vergatron": {
       "name": "Vergatron",
-      "victorias": 1,
-      "puntos": 1
+      "victorias": 0,
+      "puntos": 0
     }
   },
   "history": [
@@ -48,13 +48,6 @@
       "loser": "Vergatron",
       "points_gained": 1,
       "score_string": "1-0"
-    },
-    {
-      "winner": "Vergatron",
-      "loser": "Fer",
-      "points_gained": 1,
-      "score_string": "1-0"
     }
-     
   ]
 }
