@@ -32,8 +32,8 @@
     },
     "Vergatron": {
       "name": "Gladiator",
-      "victorias": 1,
-      "puntos": 1
+      "victorias": 2,
+      "puntos": 2
     }
   },
   "history": [
@@ -58,6 +58,12 @@
     {
       "winner": "Goku2001",
       "loser": "Gladiator",
+      "points_gained": 1,
+      "score_string": "1-0"
+    },
+    {
+      "winner": "Vergatron",
+      "loser": "Evangelyon",
       "points_gained": 1,
       "score_string": "1-0"
     }
