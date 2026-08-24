@@ -1,3 +1,39 @@
 {
- 
+  "players": {
+    "Astor": {
+      "name": "Astor",
+      "victorias": 0,
+      "puntos": 0
+    },
+    "Snake": {
+      "name": "Snake",
+      "victorias": 0,
+      "puntos": 0
+    },
+    "Goku2001": {
+      "name": "Goku2001",
+      "victorias": 2,
+      "puntos": 4
+    },
+    "Evangelyon": {
+      "name": "Evangelyon",
+      "victorias": 0,
+      "puntos": 0
+    },
+    "Fer": {
+      "name": "Fer",
+      "victorias": 0,
+      "puntos": 0
+    },
+    "Gladiator": {
+      "name": "Gladiator",
+      "victorias": 0,
+      "puntos": 0
+    },
+    "Vergatron": {
+      "name": "Vergatron",
+      "victorias": 1,
+      "puntos": 1
+    }
+  },
 }
