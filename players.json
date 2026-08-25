@@ -1,48 +1,11 @@
 {
   "players": {
-    "Astor": {
-      "name": "Astor",
-      "victorias": 0,
-      "puntos": 0
-    },
-    "Snake": {
-      "name": "Snake",
-      "victorias": 0,
-      "puntos": 0
-    },
-    "Goku2001": {
-      "name": "Goku2001",
-      "victorias": 1,
-      "puntos": 3
-    },
-    "Evangelyon": {
-      "name": "Evangelyon",
-      "victorias": 0,
-      "puntos": 0
-    },
-    "Fer": {
-      "name": "Fer",
-      "victorias": 0,
-      "puntos": 0
-    },
-    "Gladiator": {
-      "name": "Gladiator",
-      "victorias": 0,
-      "puntos": 0
-    },
-    "Vergatron": {
-      "name": "Vergatron",
-      "victorias": 0,
-      "puntos": 0
-    }
+    "Astor": { "name": "Astor", "victorias": 0, "puntos": 0 },
+    "Chepa": { "name": "Chepa", "victorias": 0, "puntos": 0 },
+    "Evangelyon": { "name": "Evangelyon", "victorias": 0, "puntos": 0 },
+    "Fer": { "name": "Fer", "victorias": 0, "puntos": 0 },
+    "Goku2001": { "name": "Goku2001", "victorias": 0, "puntos": 0 },
+    "Snake": { "name": "Snake", "victorias": 0, "puntos": 0 }
   },
-  "history": [
-    {
-      "winner": "Goku2001",
-      "loser": "Vergatron",
-      "points_gained": 3,
-      "score_string": "2-0",
-      "replay_url": "replays/Goku2001vsVergatron2-01787620661.SC2Replay"
-    }
-  ]
+  "history": []
 }
