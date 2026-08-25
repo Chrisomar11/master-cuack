@@ -237,16 +237,17 @@ function setupFormListeners() {
                         const players = data.players || {};
                         if (history.length === 0) { alert("No historical match records found to undo.");
                         return;}
-                        const lastMatch = history.pop();
-                        const winner = lastMatch.winner;
-                         const points = lastMatch.points_gained;
-                         if (players[winner]) {players[winner].victorias = Math.max(0, players[winner].victorias - 1);
-                            players[winner].puntos = Math.max(0, players[winner].puntos - points);
-                            }
-                         const updatedBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
-                         await uploadToGitHub(FILE_PATH, Web App: Reverted last match checkpoint, updatedBase64, dbFileInfo.sha);
-                         alert("Last match erased from system registers.");
-                         setTimeout(fetchMatrixLeaderboard, 1500);
-                        } 
-                    catch (err) {alert(Undo execution failed:\n${err.message});}});}}
-// Kick off processes on site startupwindow.onload = initWebInterface;
+                const lastMatch = history.pop();
+                const winner = lastMatch.winner;
+                const points = lastMatch.points_gained;
+                if (players[winner]) {players[winner].victorias = Math.max(0, players[winner].victorias - 1);
+                players[winner].puntos = Math.max(0, players[winner].puntos - points);
+                }
+                const updatedBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+                await uploadToGitHub(FILE_PATH, Web App: Reverted last match checkpoint, updatedBase64, dbFileInfo.sha);
+                alert("Last match erased from system registers.");
+                setTimeout(fetchMatrixLeaderboard, 1500);
+                } 
+                catch (err) {alert(Undo execution failed:\n${err.message});}});
+                             } }
+// Kick off processes on site startup window.onload = initWebInterface;
