@@ -219,4 +219,32 @@ function setupFormListeners() {
 
                 if (!players[winner]) players[winner] = { name: winner, victorias: 0, puntos: 0 };
                 if (!players[loser]) players[loser] = { name: loser, victorias: 0, puntos: 0 };
-
+                    players[winner].victorias += 1;
+                    players[winner].puntos += pointsGained;
+                    history.push({winner, loser, points_gained: pointsGained, score_string: scoreStr, replay_url: replayUrl});
+                    // 3. Push adjusted database json back upconst updatedBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+                    await uploadToGitHub(FILE_PATH, Web App: Logged match ${winner} vs ${loser}, updatedBase64, dbFileInfo.sha);alert("Match successfully uploaded directly to GitHub server!");
+                form.reset();
+                // Allow a slight lag pause before reloading layoutssetTimeout(fetchMatrixLeaderboard, 1500);
+                } catch (err) {alert(Error logging match results:\n${err.message});
+                               console.error(err);}});}
+                if (undoBtn) {undoBtn.addEventListener("click", async function() {
+                    if (!confirm("Are you sure you want to delete the last recorded match?")) return;
+                    try {const dbFileInfo = await getGitHubFileInfo(FILE_PATH);
+                        if (!dbFileInfo) return;
+                        const data = JSON.parse(atob(dbFileInfo.content.replace(/\s/g, '')));
+                        const history = data.history || [];
+                        const players = data.players || {};
+                        if (history.length === 0) { alert("No historical match records found to undo.");
+                        return;
+                                                  }const lastMatch = history.pop();
+                        const winner = lastMatch.winner;
+                         const points = lastMatch.points_gained;
+                         if (players[winner]) {players[winner].victorias = Math.max(0, players[winner].victorias - 1);
+                                               players[winner].puntos = Math.max(0, players[winner].puntos - points);
+                                              }const updatedBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+                         await uploadToGitHub(FILE_PATH, Web App: Reverted last match checkpoint, updatedBase64, dbFileInfo.sha);
+                         alert("Last match erased from system registers.");
+                         setTimeout(fetchMatrixLeaderboard, 1500);
+                        } catch (err) {alert(Undo execution failed:\n${err.message});}});}}
+// Kick off processes on site startupwindow.onload = initWebInterface;
