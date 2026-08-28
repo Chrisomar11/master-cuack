@@ -12,16 +12,14 @@
             --sc2-blue: #00cdff;
             --text-main: #e2e8f0;
             --border-color: #3b4252;
-            
-            /* Nuevos colores para los marcadores */
-            --match-win: rgba(74, 222, 128, 0.2);  /* Verde suave */
+            --match-win: rgba(74, 222, 128, 0.2);  
             --match-win-text: #4ade80;
-            --match-lose: rgba(248, 113, 113, 0.2); /* Rojo suave */
+            --match-lose: rgba(248, 113, 113, 0.2); 
             --match-lose-text: #f87171;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             margin: 0;
@@ -60,9 +58,7 @@
         }
 
         @media (min-width: 900px) {
-            .tables-wrapper {
-                grid-template-columns: 2fr 1fr;
-            }
+            .tables-wrapper { grid-template-columns: 2fr 1fr; }
         }
 
         table {
@@ -86,8 +82,6 @@
             color: var(--sc2-blue);
             font-weight: 600;
             text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
         }
 
         .row-player {
@@ -97,10 +91,7 @@
             text-align: left;
         }
 
-        .col-header-player {
-            background-color: #3b4252;
-            color: #fff !important;
-        }
+        .col-header-player { background-color: #3b4252; color: #fff !important; }
 
         .highlight-totals {
             background-color: rgba(79, 70, 229, 0.15);
@@ -108,22 +99,10 @@
             color: #57f9a3;
         }
 
-        .ranking-table th {
-            background-color: #1f232a;
-            color: #ffb52a;
-        }
-
-        .ranking-table td {
-            font-weight: bold;
-        }
-
-        .history-table th {
-            background-color: #2b303c;
-        }
-
-        .history-table tr:nth-child(even) {
-            background-color: rgba(255,255,255,0.02);
-        }
+        .ranking-table th { background-color: #1f232a; color: #ffb52a; }
+        .ranking-table td { font-weight: bold; }
+        .history-table th { background-color: #2b303c; }
+        .history-table tr:nth-child(even) { background-color: rgba(255,255,255,0.02); }
 
         .same-player-cell {
             background-color: #1e222d;
@@ -139,21 +118,16 @@
             text-decoration: none;
             border-radius: 4px;
             font-weight: bold;
-            transition: background 0.2s ease, transform 0.1s ease;
-        }
-        .btn-replay:hover {
-            background-color: #6366f1;
-            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1 id="titulo">Campeonato de Starcraft 2 &lt;Master-Cuack&gt;</h1>
+    <h1>Campeonato de Starcraft 2 &lt;Master-Cuack&gt;</h1>
 
     <div class="tables-wrapper">
-        <!-- MATRIZ PRINCIPAL Y RANKING -->
+        <!-- MATRIZ PRINCIPAL -->
         <div>
             <table id="matriz-competidores">
                 <thead>
@@ -170,96 +144,13 @@
                         <th style="color: #57f9a3;">Puntos</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td class="row-player">Astor</td>
-                        <td class="same-player-cell"></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td class="highlight-totals">0</td>
-                        <td class="highlight-totals">0</td>
-                    </tr>
-                    <tr>
-                        <td class="row-player">Evangelion</td>
-                        <td></td>
-                        <td class="same-player-cell"></td>
-                        <td>0-1</td>
-                        <td>0-1</td>
-                        <td>0-2</td>
-                        <td></td>
-                        <td>0-1</td>
-                        <td class="highlight-totals">0</td>
-                        <td class="highlight-totals">0</td>
-                    </tr>
-                    <tr>
-                        <td class="row-player">Fer</td>
-                        <td></td>
-                        <td>1-0</td>
-                        <td class="same-player-cell"></td>
-                        <td>1-0</td>
-                        <td>0-1</td>
-                        <td></td>
-                        <td>0-1</td>
-                        <td class="highlight-totals">2</td>
-                        <td class="highlight-totals">2</td>
-                    </tr>
-                    <tr>
-                        <td class="row-player">Gladiator</td>
-                        <td></td>
-                        <td>1-0</td>
-                        <td>0-1</td>
-                        <td class="same-player-cell"></td>
-                        <td>0-2</td>
-                        <td>0-1</td>
-                        <td>0-2</td>
-                        <td class="highlight-totals">1</td>
-                        <td class="highlight-totals">1</td>
-                    </tr>
-                    <tr>
-                        <td class="row-player">Goku2001</td>
-                        <td></td>
-                        <td>2-0</td>
-                        <td>1-0</td>
-                        <td>2-0</td>
-                        <td class="same-player-cell"></td>
-                        <td></td>
-                        <td>2-0</td>
-                        <td class="highlight-totals">4</td>
-                        <td class="highlight-totals">10</td>
-                    </tr>
-                    <tr>
-                        <td class="row-player">Snake</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>1-0</td>
-                        <td></td>
-                        <td class="same-player-cell"></td>
-                        <td>2-0</td>
-                        <td class="highlight-totals">2</td>
-                        <td class="highlight-totals">4</td>
-                    </tr>
-                    <tr>
-                        <td class="row-player">Vergatron</td>
-                        <td></td>
-                        <td>1-0</td>
-                        <td>1-0</td>
-                        <td>2-0</td>
-                        <td>0-2</td>
-                        <td>0-2</td>
-                        <td class="same-player-cell"></td>
-                        <td class="highlight-totals">3</td>
-                        <td class="highlight-totals">5</td>
-                    </tr>
+                <tbody id="matriz-body">
+                    <!-- El motor de JS autogenerará las filas matemáticas aquí -->
                 </tbody>
             </table>
         </div>
 
-        <!-- TABLA DE RANKING EN TIEMPO REAL -->
+        <!-- RANKING EN TIEMPO REAL -->
         <div>
             <table class="ranking-table">
                 <thead>
@@ -268,14 +159,12 @@
                         <th>Ranking Oficial</th>
                     </tr>
                 </thead>
-                <tbody id="ranking-body">
-                    <!-- Dinámico -->
-                </tbody>
+                <tbody id="ranking-body"></tbody>
             </table>
         </div>
     </div>
 
-    <!-- TABLA DE HISTORIAL DE PARTIDOS -->
+    <!-- HISTORIAL DE PARTIDOS -->
     <div class="tables-wrapper" style="margin-top: 40px; grid-template-columns: 1fr;">
         <div>
             <h3 style="color: var(--sc2-blue); text-transform: uppercase; font-size: 1.1rem; margin-bottom: 15px;">Historial de Enfrentamientos Directos</h3>
@@ -288,104 +177,147 @@
                         <th>Replays</th>
                     </tr>
                 </thead>
-                <tbody>
-                           <!-- REEMPLAZA EL '#' POR TU ENLACE EN CADA FILA -->
-                    <tr><td>Goku2001</td><td>Vergatron</td><td>2</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
-                    <tr><td>Goku2001</td><td>Vergatron</td><td>1</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
-                    <tr><td>Snake</td><td>Vergatron</td><td>1</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
-                    <tr><td>Vergatron</td><td>Evangelion</td><td>1</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
-                    <tr><td>Vergatron</td><td>Fer</td><td>1</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
-                    <tr><td>Goku2001</td><td>Gladiator</td><td>2</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
-                    <tr><td>Goku2001</td><td>Gladiator</td><td>1</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
-                    <tr><td>Goku2001</td><td>Evangelion</td><td>2</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
-                    <tr><td>Goku2001</td><td>Evangelion</td><td>1</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
-                    <tr><td>Goku2001</td><td>Fer</td><td>1</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
-                    <tr><td>Fer</td><td>Evangelion</td><td>1</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
-                    <tr><td>Gladiator</td><td>Evangelion</td><td>1</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
-                    <tr><td>Fer</td><td>Gladiator</td><td>1</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
-                    <tr><td>Snake</td><td>Vergatron</td><td>2</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
-                    <tr><td>Vergatron</td><td>Gladiator</td><td>2</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
-                    <tr><td>Vergatron</td><td>Gladiator</td><td>1</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
-                    <tr><td>Snake</td><td>Gladiator</td><td>1</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
-                </tbody>
+                <tbody id="history-body"></tbody>
             </table>
         </div>
     </div>
 </div>
 
 <script>
-    function procesarTablaYRanking() {
-        const tablaMatriz = document.getElementById("matriz-competidores");
-        const columnasCabecera = tablaMatriz.querySelectorAll("thead th");
-        
-        // Asigna un ancho fijo y uniforme a todas las columnas de los jugadores (de la columna 1 a la 7)
-        // La columna 0 (PLAYERS) y las finales (Victorias/Puntos) mantienen su tamaño natural ajustado
+    const listaJugadores = ["Astor", "Evangelion", "Fer", "Gladiator", "Goku2001", "Snake", "Vergatron"];
+    
+    // Cargar datos originales si localStorage está vacío
+    const datosOriginales = [
+        { winner: "Goku2001", loser: "Vergatron", partido: 2, replay: "#" },
+        { winner: "Goku2001", loser: "Vergatron", partido: 1, replay: "#" },
+        { winner: "Snake", loser: "Vergatron", partido: 1, replay: "#" },
+        { winner: "Vergatron", loser: "Evangelion", partido: 1, replay: "#" },
+        { winner: "Vergatron", loser: "Fer", partido: 1, replay: "#" },
+        { winner: "Goku2001", loser: "Gladiator", partido: 2, replay: "#" },
+        { winner: "Goku2001", loser: "Gladiator", partido: 1, replay: "#" },
+        { winner: "Goku2001", loser: "Evangelion", partido: 2, replay: "#" },
+        { winner: "Goku2001", loser: "Evangelion", partido: 1, replay: "#" },
+        { winner: "Goku2001", loser: "Fer", partido: 1, replay: "#" },
+        { winner: "Fer", loser: "Evangelion", partido: 1, replay: "#" },
+        { winner: "Gladiator", loser: "Evangelion", partido: 1, replay: "#" },
+        { winner: "Fer", loser: "Gladiator", partido: 1, replay: "#" },
+        { winner: "Snake", loser: "Vergatron", partido: 2, replay: "#" },
+        { winner: "Vergatron", loser: "Gladiator", partido: 2, replay: "#" },
+        { winner: "Vergatron", loser: "Gladiator", partido: 1, replay: "#" },
+        { winner: "Snake", loser: "Gladiator", partido: 1, replay: "#" }
+    ];
+
+    let partidas = JSON.parse(localStorage.getItem('sc2_partidas')) || datosOriginales;
+
+    function inicializarEstructura() {
+        // Ajustar anchos fijos de columnas
+        const columnasCabecera = document.querySelectorAll("#matriz-competidores thead th");
         for (let j = 1; j <= 7; j++) {
-            if (columnasCabecera[j]) {
-                columnasCabecera[j].style.width = "80px";
-                columnasCabecera[j].style.minWidth = "80px";
+            if(columnasCabecera[j]) {
+                columnasCabecera[j].style.width = "90px";
+                columnasCabecera[j].style.minWidth = "90px";
             }
         }
 
-        const filas = document.querySelectorAll("#matriz-competidores tbody tr");
-        let jugadores = [];
+        // Crear base de datos de rendimiento mapeada
+        let estadisticas = {};
+        let matrizVersus = {};
 
-        filas.forEach(fila => {
-            const nombre = fila.cells[0].innerText;
-            const puntos = parseInt(fila.cells[9].innerText) || 0; // Lee de la columna Puntos
-            jugadores.push({ nombre, puntos });
+        listaJugadores.forEach(j => {
+            estadisticas[j] = { victorias: 0, puntos: 0 };
+            matrizVersus[j] = {};
+            listaJugadores.forEach(rival => {
+                matrizVersus[j][rival] = { ganados: 0, perdidos: 0 };
+            });
+        });
 
-            // Formato condicional inteligente para las celdas de marcadores (columnas 1 a 7)
-            for (let i = 1; i <= 7; i++) {
-                const celda = fila.cells[i];
-                const texto = celda.innerText.trim();
-
-                if (/^\d+-\d+$/.test(texto)) {
-                    const [golesIzquierda, golesDerecha] = texto.split('-').map(Number);
-
-                    if (golesIzquierda > golesDerecha) {
-                        celda.style.backgroundColor = "var(--match-win)";
-                        celda.style.color = "var(--match-win-text)";
-                        celda.style.fontWeight = "bold";
-                    } else if (golesIzquierda < golesDerecha) {
-                        celda.style.backgroundColor = "var(--match-lose)";
-                        celda.style.color = "var(--match-lose-text)";
-                    }
-                }
+        // Procesar historial para calcular los marcadores exactos en la matriz
+        partidas.forEach(p => {
+            if (estadisticas[p.winner] && estadisticas[p.loser]) {
+                matrizVersus[p.winner][p.loser].ganados++;
+                matrizVersus[p.loser][p.winner].perdidos++;
+                
+                estadisticas[p.winner].victorias++;
+                // Ejemplo: 3 puntos por victoria registrada
+                estadisticas[p.winner].puntos += 3; 
             }
         });
 
-        // Ordenar y renderizar el Ranking
-        jugadores.sort((a, b) => b.puntos - a.puntos);
+        // Renderizar la Matriz de posiciones en base a los cálculos
+        const matrizBody = document.getElementById("matriz-body");
+        matrizBody.innerHTML = "";
+
+        listaJugadores.forEach(jugador => {
+            const tr = document.createElement("tr");
+            
+                        // Celda de nombre del jugador fila
+            let HTMLFilas = `<td class="row-player">${jugador}</td>`;
+            
+            listaJugadores.forEach(rival => {
+                if (jugador === rival) {
+                    HTMLFilas += `<td class="same-player-cell"></td>`;
+                } else {
+                    const juego = matrizVersus[jugador][rival];
+                    if (juego.ganados === 0 && juego.perdidos === 0) {
+                        HTMLFilas += `<td></td>`;
+                    } else {
+                        const marcador = `${juego.ganados}-${juego.perdidos}`;
+                        const estilo = juego.ganados > juego.perdidos 
+                            ? `style="background-color: var(--match-win); color: var(--match-win-text); font-weight: bold;"` 
+                            : `style="background-color: var(--match-lose); color: var(--match-lose-text);"`;
+                        HTMLFilas += `<td ${estilo}>${marcador}</td>`;
+                    }
+                }
+            });
+
+            // Agregar totales formulados
+            HTMLFilas += `<td class="highlight-totals">${estadisticas[jugador].victorias}</td>`;
+            HTMLFilas += `<td class="highlight-totals">${estadisticas[jugador].puntos}</td>`;
+            
+            tr.innerHTML = HTMLFilas;
+            matrizBody.appendChild(tr);
+        });
+
+        // Renderizar Historial abajo
+        const historyBody = document.getElementById("history-body");
+        historyBody.innerHTML = "";
+        partidas.forEach(p => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${p.winner}</td>
+                <td>${p.loser}</td>
+                <td>${p.partido}</td>
+                <td><a class="btn-replay" href="${p.replay}" target="_blank">Ver Replay</a></td>
+            `;
+            historyBody.appendChild(tr);
+        });
+
+        // Renderizar Ranking Dinámico con Corona
+        let podio = Object.keys(estadisticas).map(name => ({ name, puntos: estadisticas[name].puntos }));
+        podio.sort((a,b) => b.puntos - a.puntos);
+
         const rankingBody = document.getElementById("ranking-body");
         rankingBody.innerHTML = "";
-
-        jugadores.forEach((jugador, index) => {
-            const row = document.createElement("tr");
+        podio.forEach((j, index) => {
+            const tr = document.createElement("tr");
             let colorPos = "#fff";
             let corona = "";
 
-            // Asignación de colores por podio y corona para el primer puesto
-            if (index === 0) {
-                colorPos = "#ffd700"; // Oro
-                corona = " <span style='color: #ffd700; margin-left: 5px; font-size: 1.1rem;'>👑</span>";
-            }
-            if (index === 1) colorPos = "#c0c0c0"; // Plata
-            if (index === 2) colorPos = "#cd7f32"; // Bronce
+            if(index === 0) { colorPos = "#ffd700"; corona = " <span style='color: #ffd700; margin-left:5px;'>👑</span>"; }
+            if(index === 1) colorPos = "#c0c0c0";
+            if(index === 2) colorPos = "#cd7f32";
 
-            row.innerHTML = `
-                <td style="color: ${colorPos}">${index + 1}°</td>
-                <td style="text-align: left; padding-left: 20px; color: ${index === 0 ? '#ffd700' : '#fff'}">
-                    ${jugador.nombre}${corona}
-                </td>
+            tr.innerHTML = `
+                <td style="color: ${colorPos}">${index+1}°</td>
+                <td style="text-align: left; padding-left: 20px; color: ${index === 0 ? '#ffd700' : '#fff'}">${j.name}${corona}</td>
             `;
-            rankingBody.appendChild(row);
+            rankingBody.appendChild(tr);
         });
     }
 
-    document.addEventListener("DOMContentLoaded", procesarTablaYRanking);
+    document.addEventListener("DOMContentLoaded", inicializarEstructura);
 </script>
-
 </body>
 </html>
+
 
