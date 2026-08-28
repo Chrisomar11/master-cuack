@@ -253,36 +253,56 @@
         </div>
     </div>
 
-        <!-- TABLA DE HISTORIAL DE PARTIDOS ABAJO -->
+           <!-- TABLA DE HISTORIAL DE PARTIDOS ABAJO -->
     <div class="tables-wrapper" style="margin-top: 40px; grid-template-columns: 1fr;">
         <div>
             <h3 style="color: var(--sc2-blue); text-transform: uppercase; font-size: 1.1rem; margin-bottom: 15px;">Historial de Enfrentamientos Directos</h3>
+            <style>
+                /* Estilo dinámico para los nuevos botones de repeticiones */
+                .btn-replay {
+                    display: inline-block;
+                    background-color: var(--primary-accent);
+                    color: white;
+                    padding: 6px 12px;
+                    font-size: 0.85rem;
+                    text-decoration: none;
+                    border-radius: 4px;
+                    font-weight: bold;
+                    transition: background 0.2s ease, transform 0.1s ease;
+                }
+                .btn-replay:hover {
+                    background-color: #6366f1;
+                    transform: scale(1.05);
+                }
+            </style>
             <table class="history-table">
                 <thead>
                     <tr>
                         <th>Winner</th>
                         <th>Loser</th>
                         <th>Partido</th>
+                        <th>Replays</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Goku2001</td><td>Vergatron</td><td>2</td></tr>
-                    <tr><td>Goku2001</td><td>Vergatron</td><td>1</td></tr>
-                    <tr><td>Snake</td><td>Vergatron</td><td>1</td></tr>
-                    <tr><td>Vergatron</td><td>Evangelion</td><td>1</td></tr>
-                    <tr><td>Vergatron</td><td>Fer</td><td>1</td></tr>
-                    <tr><td>Goku2001</td><td>Gladiator</td><td>2</td></tr>
-                    <tr><td>Goku2001</td><td>Gladiator</td><td>1</td></tr>
-                    <tr><td>Goku2001</td><td>Evangelion</td><td>2</td></tr>
-                    <tr><td>Goku2001</td><td>Evangelion</td><td>1</td></tr>
-                    <tr><td>Goku2001</td><td>Fer</td><td>1</td></tr>
-                    <tr><td>Fer</td><td>Evangelion</td><td>1</td></tr>
-                    <tr><td>Gladiator</td><td>Evangelion</td><td>1</td></tr>
-                    <tr><td>Fer</td><td>Gladiator</td><td>1</td></tr>
-                    <tr><td>Snake</td><td>Vergatron</td><td>2</td></tr>
-                    <tr><td>Vergatron</td><td>Gladiator</td><td>2</td></tr>
-                    <tr><td>Vergatron</td><td>Gladiator</td><td>1</td></tr>
-                    <tr><td>Snake</td><td>Gladiator</td><td>1</td></tr>
+                    <!-- REEMPLAZA EL '#' POR TU ENLACE EN CADA FILA -->
+                    <tr><td>Goku2001</td><td>Vergatron</td><td>2</td><td><a class="btn-replay" href="https://github.com/Chrisomar11/master-cuack/raw/refs/heads/main/replays/Goku-Vergatron2.SC2Replay" target="_blank">Ver Replay</a></td></tr>
+                    <tr><td>Goku2001</td><td>Vergatron</td><td>1</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
+                    <tr><td>Snake</td><td>Vergatron</td><td>1</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
+                    <tr><td>Vergatron</td><td>Evangelion</td><td>1</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
+                    <tr><td>Vergatron</td><td>Fer</td><td>1</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
+                    <tr><td>Goku2001</td><td>Gladiator</td><td>2</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
+                    <tr><td>Goku2001</td><td>Gladiator</td><td>1</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
+                    <tr><td>Goku2001</td><td>Evangelion</td><td>2</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
+                    <tr><td>Goku2001</td><td>Evangelion</td><td>1</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
+                    <tr><td>Goku2001</td><td>Fer</td><td>1</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
+                    <tr><td>Fer</td><td>Evangelion</td><td>1</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
+                    <tr><td>Gladiator</td><td>Evangelion</td><td>1</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
+                    <tr><td>Fer</td><td>Gladiator</td><td>1</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
+                    <tr><td>Snake</td><td>Vergatron</td><td>2</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
+                    <tr><td>Vergatron</td><td>Gladiator</td><td>2</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
+                    <tr><td>Vergatron</td><td>Gladiator</td><td>1</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
+                    <tr><td>Snake</td><td>Gladiator</td><td>1</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
                 </tbody>
             </table>
         </div>
