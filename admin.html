@@ -1,1 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control - SC2 Master-Cuack</title>
+    <style>
+        :root {
+            --bg-color: #111317;
+            --panel-bg: #1a1d24;
+            --primary-accent: #10b981; /* Verde para administración */
+            --sc2-blue: #00cdff;
+            --text-main: #e2e8f0;
+            --border-color: #2d3139;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: var(--panel-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            border: 1px solid var(--border-color);
+        }
+
+        h1 {
+            color: var(--sc2-blue);
+            text-align: center;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .form-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        label {
+            display: flex;
+            flex-direction: column;
+            font-size: 0.9rem;
+            color: #94a3b8;
+            font-weight: bold;
+        }
+
+        select, input {
+            margin-top: 5px;
+            padding: 10px;
+            background: #242834;
+            border: 1px solid var(--border-color);
+            color: white;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .btn {
+            grid-column: span 3;
+            background: var(--primary-accent);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            text-transform: uppercase;
+            transition: background 0.2s;
+        }
+
+        .btn:hover { background: #059669; }
+
+        .btn-danger {
+            background: #ef4444;
+            margin-top: 10px;
+            grid-column: span 3;
+        }
+        .btn-danger:hover { background: #dc2626; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        th { background: #242834; color: var(--sc2-blue); }
+
+        .actions-cell button {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .nav-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--sc2-blue);
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="index.html" class="nav-link">← Volver a la Tabla Pública</a>
+    <h1>Panel de Administración del Torneo</h1>
+    
+    <!-- Formulario para agregar partidas -->
+    <div class="form-group">
+        <label>
+            Ganador (Winner)
+            <select id="winner">
+                <option value="Astor">Astor</option>
+                <option value="Evangelion">Evangelion</option>
+                <option value="Fer">Fer</option>
+                <option value="Gladiator">Gladiator</option>
+                <option value="Goku2001">Goku2001</option>
+                <option value="Snake">Snake</option>
+                <option value="Vergatron">Vergatron</option>
+            </select>
+        </label>
+        
+        <label>
+            Perdedor (Loser)
+            <select id="loser">
+                <option value="Astor">Astor</option>
+                <option value="Evangelion">Evangelion</option>
+                <option value="Fer">Fer</option>
+                <option value="Gladiator">Gladiator</option>
+                <option value="Goku2001">Goku2001</option>
+                <option value="Snake">Snake</option>
+                <option value="Vergatron">Vergatron</option>
+            </select>
+        </label>
+        
+        <label>
+            Número de Partido
+            <input type="number" id="partido" min="1" max="5" value="1">
+        </label>
+
+        <label style="grid-column: span 3;">
+            Enlace del Replay (Opcional)
+            <input type="url" id="replay" placeholder="https://youtube.com... o enlace de descarga">
+        </label>
+        
+        <button class="btn" onclick="agregarEnfrentamiento()">Guardar Enfrentamiento</button>
+        <button class="btn btn-danger" onclick="restablecerTorneo()">Reiniciar Todo el Torneo (Cero Datos)</button>
+    </div>
+
+    <h2>Enfrentamientos Registrados</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Winner</th>
+                <th>Loser</th>
+                <th>Partido</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="admin-history-body">
+            <!-- Se carga dinámicamente -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Listado inicial de datos (Los que me enviaste originalmente)
+    const datosIniciales = [
+        { winner: "Goku2001", loser: "Vergatron", partido: 2, replay: "#" },
+        { winner: "Goku2001", loser: "Vergatron", partido: 1, replay: "#" },
+        { winner: "Snake", loser: "Vergatron", partido: 1, replay: "#" },
+        { winner: "Vergatron", loser: "Evangelion", partido: 1, replay: "#" },
+        { winner: "Vergatron", loser: "Fer", partido: 1, replay: "#" },
+        { winner: "Goku2001", loser: "Gladiator", partido: 2, replay: "#" },
+        { winner: "Goku2001", loser: "Gladiator", partido: 1, replay: "#" },
+        { winner: "Goku2001", loser: "Evangelion", partido: 2, replay: "#" },
+        { winner: "Goku2001", loser: "Evangelion", partido: 1, replay: "#" },
+        { winner: "Goku2001", loser: "Fer", partido: 1, replay: "#" },
+        { winner: "Fer", loser: "Evangelion", partido: 1, replay: "#" },
+        { winner: "Gladiator", loser: "Evangelion", partido: 1, replay: "#" },
+        { winner: "Fer", loser: "Gladiator", partido: 1, replay: "#" },
+        { winner: "Snake", loser: "Vergatron", partido: 2, replay: "#" },
+        { winner: "Vergatron", loser: "Gladiator", partido: 2, replay: "#" },
+        { winner: "Vergatron", loser: "Gladiator", partido: 1, replay: "#" },
+        { winner: "Snake", loser: "Gladiator", partido: 1, replay: "#" }
+    ];
+
+    // Obtener enfrentamientos almacenados o usar los iniciales
+    let enfrentamientos = JSON.parse(localStorage.getItem('sc2_partidas'));
+    if (!enfrentamientos) {
+        enfrentamientos = datosIniciales;
+        localStorage.setItem('sc2_partidas', JSON.stringify(enfrentamientos));
+    }
+
+    function renderizarTablaAdmin() {
+        const tbody = document.getElementById("admin-history-body");
+        tbody.innerHTML = "";
+        
+        enfrentamientos.forEach((p, index) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${p.winner}</td>
+                <td>${p.loser}</td>
+                <td>${p.partido}</td>
+                <td class="actions-cell">
+                    <button onclick="eliminarPartido(${index})">Eliminar</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    function agregarEnfrentamiento() {
+        const winner = document.getElementById("winner").value;
+        const loser = document.getElementById("loser").value;
+        const partido = document.getElementById("partido").value;
+        let replay = document.getElementById("replay").value.trim();
+
+        if (winner === loser) {
+            alert("¡Un jugador no puede pelear contra sí mismo!");
+            return;
+        }
+
+        if(!replay) replay = "#";
+
+        enfrentamientos.unshift({ winner, loser, partido, replay }); // Agrega al inicio de la lista
+        localStorage.setItem('sc2_partidas', JSON.stringify(enfrentamientos));
+        
+        renderizarTablaAdmin();
+        document.getElementById("replay").value = ""; // Limpiar input
+    }
+
+    function eliminarPartido(index) {
+        if(confirm("¿Seguro que deseas eliminar este enfrentamiento?")) {
+            enfrentamientos.splice(index, 1);
+            localStorage.setItem('sc2_partidas', JSON.stringify(enfrentamientos));
+            renderizarTablaAdmin();
+        }
+    }
+
+    function restablecerTorneo() {
+        if(confirm("ATENCIÓN: Esto borrará todas las partidas ingresadas. ¿Continuar?")) {
+            enfrentamientos = [];
+            localStorage.setItem('sc2_partidas', JSON.stringify(enfrentamientos));
+            renderizarTablaAdmin();
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", renderizarTablaAdmin);
+</script>
+</body>
+</html>
 
