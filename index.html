@@ -12,6 +12,12 @@
             --sc2-blue: #00cdff;
             --text-main: #e2e8f0;
             --border-color: #3b4252;
+            
+            /* Nuevos colores para los marcadores */
+            --match-win: rgba(74, 222, 128, 0.2);  /* Verde suave */
+            --match-win-text: #4ade80;
+            --match-lose: rgba(248, 113, 113, 0.2); /* Rojo suave */
+            --match-lose-text: #f87171;
         }
 
         body {
@@ -122,6 +128,22 @@
         .same-player-cell {
             background-color: #1e222d;
             background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.03) 10px, rgba(255,255,255,0.03) 20px);
+        }
+
+        .btn-replay {
+            display: inline-block;
+            background-color: var(--primary-accent);
+            color: white;
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background 0.2s ease, transform 0.1s ease;
+        }
+        .btn-replay:hover {
+            background-color: #6366f1;
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -247,34 +269,16 @@
                     </tr>
                 </thead>
                 <tbody id="ranking-body">
-                    <!-- Se genera dinámicamente con las fórmulas funcionales del Script -->
+                    <!-- Dinámico -->
                 </tbody>
             </table>
         </div>
     </div>
 
-           <!-- TABLA DE HISTORIAL DE PARTIDOS ABAJO -->
+    <!-- TABLA DE HISTORIAL DE PARTIDOS -->
     <div class="tables-wrapper" style="margin-top: 40px; grid-template-columns: 1fr;">
         <div>
             <h3 style="color: var(--sc2-blue); text-transform: uppercase; font-size: 1.1rem; margin-bottom: 15px;">Historial de Enfrentamientos Directos</h3>
-            <style>
-                /* Estilo dinámico para los nuevos botones de repeticiones */
-                .btn-replay {
-                    display: inline-block;
-                    background-color: var(--primary-accent);
-                    color: white;
-                    padding: 6px 12px;
-                    font-size: 0.85rem;
-                    text-decoration: none;
-                    border-radius: 4px;
-                    font-weight: bold;
-                    transition: background 0.2s ease, transform 0.1s ease;
-                }
-                .btn-replay:hover {
-                    background-color: #6366f1;
-                    transform: scale(1.05);
-                }
-            </style>
             <table class="history-table">
                 <thead>
                     <tr>
@@ -286,7 +290,7 @@
                 </thead>
                 <tbody>
                     <!-- REEMPLAZA EL '#' POR TU ENLACE EN CADA FILA -->
-                    <tr><td>Goku2001</td><td>Vergatron</td><td>2</td><td><a class="btn-replay" href="https://github.com/Chrisomar11/master-cuack/raw/refs/heads/main/replays/Goku-Vergatron2.SC2Replay" target="_blank">Ver Replay</a></td></tr>
+                    <tr><td>Goku2001</td><td>Vergatron</td><td>2</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
                     <tr><td>Goku2001</td><td>Vergatron</td><td>1</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
                     <tr><td>Snake</td><td>Vergatron</td><td>1</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
                     <tr><td>Vergatron</td><td>Evangelion</td><td>1</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
@@ -310,8 +314,7 @@
 </div>
 
 <script>
-    // Función emuladora de fórmulas de Excel para calcular y ordenar el Ranking de forma automática
-    function actualizarRankingExcel() {
+    function procesarTablaYRanking() {
         const filas = document.querySelectorAll("#matriz-competidores tbody tr");
         let jugadores = [];
 
@@ -319,22 +322,39 @@
             const nombre = fila.cells[0].innerText;
             const puntos = parseInt(fila.cells[9].innerText) || 0;
             jugadores.push({ nombre, puntos });
+
+            // Formato condicional inteligente para las celdas de marcadores (columnas 1 a 7)
+            for (let i = 1; i <= 7; i++) {
+                const celda = fila.cells[i];
+                const texto = celda.innerText.trim();
+
+                // Valida si la celda contiene un formato de marcador como "X-Y"
+                if (/^\d+-\d+$/.test(texto)) {
+                    const [golesIzquierda, golesDerecha] = texto.split('-').map(Number);
+
+                    if (golesIzquierda > golesDerecha) {
+                        celda.style.backgroundColor = "var(--match-win)";
+                        celda.style.color = "var(--match-win-text)";
+                        celda.style.fontWeight = "bold";
+                    } else if (golesIzquierda < golesDerecha) {
+                        celda.style.backgroundColor = "var(--match-lose)";
+                        celda.style.color = "var(--match-lose-text)";
+                    }
+                }
+            }
         });
 
-        // Simula la fórmula =ORDENAR.POR() de Excel
+        // Ordenar y renderizar el Ranking
         jugadores.sort((a, b) => b.puntos - a.puntos);
-
         const rankingBody = document.getElementById("ranking-body");
         rankingBody.innerHTML = "";
 
         jugadores.forEach((jugador, index) => {
             const row = document.createElement("tr");
-            
-            // Estilos para destacar los primeros puestos
             let colorPos = "#fff";
-            if(index === 0) colorPos = "#ffd700"; // Oro
-            if(index === 1) colorPos = "#c0c0c0"; // Plata
-            if(index === 2) colorPos = "#cd7f32"; // Bronce
+            if(index === 0) colorPos = "#ffd700";
+            if(index === 1) colorPos = "#c0c0c0";
+            if(index === 2) colorPos = "#cd7f32";
 
             row.innerHTML = `
                 <td style="color: ${colorPos}">${index + 1}°</td>
@@ -344,8 +364,7 @@
         });
     }
 
-    // Ejecutar el cálculo automático al cargar la página web
-    document.addEventListener("DOMContentLoaded", actualizarRankingExcel);
+    document.addEventListener("DOMContentLoaded", procesarTablaYRanking);
 </script>
 
 </body>
