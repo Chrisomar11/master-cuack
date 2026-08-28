@@ -186,40 +186,47 @@
 <script>
     const listaJugadores = ["Astor", "Evangelion", "Fer", "Gladiator", "Goku2001", "Snake", "Vergatron"];
     
-    // Cargar datos originales si localStorage está vacío
-    const datosOriginales = [
-        { winner: "Goku2001", loser: "Vergatron", partido: 2, replay: "#" },
-        { winner: "Goku2001", loser: "Vergatron", partido: 1, replay: "#" },
-        { winner: "Snake", loser: "Vergatron", partido: 1, replay: "#" },
-        { winner: "Vergatron", loser: "Evangelion", partido: 1, replay: "#" },
-        { winner: "Vergatron", loser: "Fer", partido: 1, replay: "#" },
-        { winner: "Goku2001", loser: "Gladiator", partido: 2, replay: "#" },
-        { winner: "Goku2001", loser: "Gladiator", partido: 1, replay: "#" },
-        { winner: "Goku2001", loser: "Evangelion", partido: 2, replay: "#" },
-        { winner: "Goku2001", loser: "Evangelion", partido: 1, replay: "#" },
-        { winner: "Goku2001", loser: "Fer", partido: 1, replay: "#" },
-        { winner: "Fer", loser: "Evangelion", partido: 1, replay: "#" },
-        { winner: "Gladiator", loser: "Evangelion", partido: 1, replay: "#" },
-        { winner: "Fer", loser: "Gladiator", partido: 1, replay: "#" },
-        { winner: "Snake", loser: "Vergatron", partido: 2, replay: "#" },
-        { winner: "Vergatron", loser: "Gladiator", partido: 2, replay: "#" },
-        { winner: "Vergatron", loser: "Gladiator", partido: 1, replay: "#" },
-        { winner: "Snake", loser: "Gladiator", partido: 1, replay: "#" }
-    ];
+    // ⚠️ REEMPLAZA ESTE ENLACE ENTRE COMILLAS POR EL ENLACE .CSV QUE COPIASTE EN EL PASO 2 ⚠️
+    const URL_GOOGLE_SHEETS = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS2Sw3bvIa3GNYWiozPUo2LLg081ZuT1F3YaGzUaD3joXzRkqcJNpwtC1vM6tsmbUpyMOhoXJM3LRd_/pub?output=csv";
 
-    let partidas = JSON.parse(localStorage.getItem('sc2_partidas')) || datosOriginales;
+    async function cargarDatosDesdeGoogle() {
+        try {
+            const respuesta = await fetch(URL_GOOGLE_SHEETS);
+            const textoCSV = await respuesta.text();
+            
+            // Convertir las líneas del CSV en un objeto legible por JavaScript
+            const lineas = textoCSV.split("\n");
+            let partidas = [];
+            
+            for (let i = 1; i < lineas.length; i++) {
+                if (!lineas[i].trim()) continue;
+                // Separar por comas teniendo en cuenta comillas si las hay
+                const columnas = lineas[i].split(",");
+                
+                partidas.push({
+                    winner: columnas[0].replace(/"/g, "").trim(),
+                    loser: columnas[1].replace(/"/g, "").trim(),
+                    partido: columnas[2].replace(/"/g, "").trim(),
+                    replay: columnas[3] ? columnas[3].replace(/"/g, "").trim() : "#"
+                });
+            }
 
-    function inicializarEstructura() {
+            procesarYRenderizar(partidas);
+        } catch (error) {
+            console.error("Error cargando los datos del torneo: ", error);
+        }
+    }
+
+    function procesarYRenderizar(partidas) {
         // Ajustar anchos fijos de columnas
         const columnasCabecera = document.querySelectorAll("#matriz-competidores thead th");
         for (let j = 1; j <= 7; j++) {
             if(columnasCabecera[j]) {
-                columnasCabecera[j].style.width = "65px";
-                columnasCabecera[j].style.minWidth = "65px";
+                columnasCabecera[j].style.width = "90px";
+                columnasCabecera[j].style.minWidth = "90px";
             }
         }
 
-        // Crear base de datos de rendimiento mapeada
         let estadisticas = {};
         let matrizVersus = {};
 
@@ -231,26 +238,23 @@
             });
         });
 
-        // Procesar historial para calcular los marcadores exactos en la matriz
+        // Procesar partidas del Excel
         partidas.forEach(p => {
             if (estadisticas[p.winner] && estadisticas[p.loser]) {
                 matrizVersus[p.winner][p.loser].ganados++;
                 matrizVersus[p.loser][p.winner].perdidos++;
                 
                 estadisticas[p.winner].victorias++;
-                // Ejemplo: 3 puntos por victoria registrada
-                estadisticas[p.winner].puntos += 3; 
+                estadisticas[p.winner].puntos += 3; // 3 puntos por victoria
             }
         });
 
-        // Renderizar la Matriz de posiciones en base a los cálculos
+        // Renderizar la Matriz
         const matrizBody = document.getElementById("matriz-body");
         matrizBody.innerHTML = "";
 
         listaJugadores.forEach(jugador => {
             const tr = document.createElement("tr");
-            
-                        // Celda de nombre del jugador fila
             let HTMLFilas = `<td class="row-player">${jugador}</td>`;
             
             listaJugadores.forEach(rival => {
@@ -270,7 +274,6 @@
                 }
             });
 
-            // Agregar totales formulados
             HTMLFilas += `<td class="highlight-totals">${estadisticas[jugador].victorias}</td>`;
             HTMLFilas += `<td class="highlight-totals">${estadisticas[jugador].puntos}</td>`;
             
@@ -315,9 +318,5 @@
         });
     }
 
-    document.addEventListener("DOMContentLoaded", inicializarEstructura);
+    document.addEventListener("DOMContentLoaded", cargarDatosDesdeGoogle);
 </script>
-</body>
-</html>
-
-
