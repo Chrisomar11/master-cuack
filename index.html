@@ -1,143 +1,332 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StarCraft II Grid Tournament <Master-Cuack></title>
+    <title>Campeonato de Starcraft 2 - Master-Cuack</title>
     <style>
-        /* Dark StarCraft Theme Colors */
+        :root {
+            --bg-color: #1a1c23;
+            --panel-bg: #242834;
+            --primary-accent: #4f46e5;
+            --sc2-blue: #00cdff;
+            --text-main: #e2e8f0;
+            --border-color: #3b4252;
+        }
+
         body {
-            background-color: #0b0f19;
-            color: #e2e8f0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             margin: 0;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        header {
-            text-align: center;
-            padding: 20px 0;
-            background: linear-gradient(180deg, #111827 0%, #0b0f19 100%);
-            border-bottom: 2px solid #00d2ff;
-            margin-bottom: 30px;
-        }
-
-        header h1 {
-            margin: 0;
-            color: #00d2ff;
-            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
-        }
-
-        .matrix-container {
+        .container {
+            width: 100%;
             max-width: 1200px;
-            margin: 0 auto;
-            background-color: #0b0f19;
-            padding: 20px;
-            border-radius: 8px;
-            overflow-x: auto; /* Adds scrolling for small screens */
+            background: var(--panel-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            border: 1px solid var(--border-color);
+        }
+
+        h1 {
+            color: var(--sc2-blue);
+            text-align: center;
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px rgba(0, 205, 255, 0.3);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .tables-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 900px) {
+            .tables-wrapper {
+                grid-template-columns: 2fr 1fr;
+            }
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            background-color: #0b0f19;
+            background-color: rgba(30, 34, 45, 0.6);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
         }
 
         th, td {
-            border: 1px solid #1e293b;
-            padding: 10px;
+            padding: 12px 14px;
             text-align: center;
-            min-width: 100px;
+            border: 1px solid var(--border-color);
+            font-size: 0.95rem;
         }
 
         th {
-            background-color: #1e293b;
-            color: #e2e8f0;
+            background-color: #2e3440;
+            color: var(--sc2-blue);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .row-player {
+            background-color: #292f3d;
             font-weight: bold;
-            font-size: 14px;
-        }
-
-        /* Diagonal self-match cell style */
-        .blocker-cell {
-            background-color: #0f172a;
-            color: #475569;
-        }
-
-        /* Unplayed match cell style */
-        .unplayed-cell {
-            background-color: #1e293b;
-            color: #94a3b8;
-        }
-
-        /* Row Header Player Names style */
-        .player-row-header {
-            background-color: #1e293b;
-            color: #e2e8f0;
-            font-weight: bold;
+            color: #fff;
             text-align: left;
-            padding-left: 15px;
-            min-width: 130px;
         }
 
-        /* Far-right statistics columns style */
-        .stats-header {
-            background-color: #334155;
-            color: #00d2ff;
+        .col-header-player {
+            background-color: #3b4252;
+            color: #fff !important;
         }
 
-        .stats-cell {
-            background-color: #111827;
-            color: #e2e8f0;
+        .highlight-totals {
+            background-color: rgba(79, 70, 229, 0.15);
+            font-weight: bold;
+            color: #57f9a3;
         }
 
-        .points-cell {
-            color: #00d2ff;
+        .ranking-table th {
+            background-color: #1f232a;
+            color: #ffb52a;
+        }
+
+        .ranking-table td {
             font-weight: bold;
         }
 
-        /* Replay Download Button style */
-        .replay-btn {
-            display: inline-block;
-            margin-top: 5px;
-            background-color: #0b0f19;
-            color: #00d2ff;
-            text-decoration: none;
-            font-size: 11px;
-            padding: 3px 6px;
-            border-radius: 4px;
-            border: 1px solid #00d2ff;
-            font-weight: bold;
-            transition: all 0.2s;
+        .history-table th {
+            background-color: #2b303c;
         }
 
-        .replay-btn:hover {
-            background-color: #00d2ff;
-            color: #0b0f19;
+        .history-table tr:nth-child(even) {
+            background-color: rgba(255,255,255,0.02);
         }
 
-        .loser-cell .replay-btn {
-            color: #fca5a5;
-            border-color: #991b1b;
-        }
-
-        .loser-cell .replay-btn:hover {
-            background-color: #991b1b;
-            color: white;
+        .same-player-cell {
+            background-color: #1e222d;
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.03) 10px, rgba(255,255,255,0.03) 20px);
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>⚔️ SC2 Cross-Table Tournament <Master-Cuack></h1>
-    </header>
+<div class="container">
+    <h1 id="titulo">Campeonato de Starcraft 2 &lt;Master-Cuack&gt;</h1>
 
-    <div class="matrix-container">
-        <table id="matrixTable">
-            <!-- JavaScript will generate headers, scores, stats, and download links dynamically here -->
-        </table>
+    <div class="tables-wrapper">
+        <!-- MATRIZ PRINCIPAL Y RANKING -->
+        <div>
+            <table id="matriz-competidores">
+                <thead>
+                    <tr>
+                        <th class="col-header-player">PLAYERS</th>
+                        <th>Astor</th>
+                        <th>Evangelion</th>
+                        <th>Fer</th>
+                        <th>Gladiator</th>
+                        <th>Goku2001</th>
+                        <th>Snake</th>
+                        <th>Vergatron</th>
+                        <th style="color: #57f9a3;">Victorias</th>
+                        <th style="color: #57f9a3;">Puntos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="row-player">Astor</td>
+                        <td class="same-player-cell"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="highlight-totals">0</td>
+                        <td class="highlight-totals">0</td>
+                    </tr>
+                    <tr>
+                        <td class="row-player">Evangelion</td>
+                        <td></td>
+                        <td class="same-player-cell"></td>
+                        <td>0-1</td>
+                        <td>0-1</td>
+                        <td>0-2</td>
+                        <td></td>
+                        <td>0-1</td>
+                        <td class="highlight-totals">0</td>
+                        <td class="highlight-totals">0</td>
+                    </tr>
+                    <tr>
+                        <td class="row-player">Fer</td>
+                        <td></td>
+                        <td>1-0</td>
+                        <td class="same-player-cell"></td>
+                        <td>1-0</td>
+                        <td>0-1</td>
+                        <td></td>
+                        <td>0-1</td>
+                        <td class="highlight-totals">2</td>
+                        <td class="highlight-totals">2</td>
+                    </tr>
+                    <tr>
+                        <td class="row-player">Gladiator</td>
+                        <td></td>
+                        <td>1-0</td>
+                        <td>0-1</td>
+                        <td class="same-player-cell"></td>
+                        <td>0-2</td>
+                        <td>0-1</td>
+                        <td>0-2</td>
+                        <td class="highlight-totals">1</td>
+                        <td class="highlight-totals">1</td>
+                    </tr>
+                    <tr>
+                        <td class="row-player">Goku2001</td>
+                        <td></td>
+                        <td>2-0</td>
+                        <td>1-0</td>
+                        <td>2-0</td>
+                        <td class="same-player-cell"></td>
+                        <td></td>
+                        <td>2-0</td>
+                        <td class="highlight-totals">4</td>
+                        <td class="highlight-totals">10</td>
+                    </tr>
+                    <tr>
+                        <td class="row-player">Snake</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>1-0</td>
+                        <td></td>
+                        <td class="same-player-cell"></td>
+                        <td>2-0</td>
+                        <td class="highlight-totals">2</td>
+                        <td class="highlight-totals">4</td>
+                    </tr>
+                    <tr>
+                        <td class="row-player">Vergatron</td>
+                        <td></td>
+                        <td>1-0</td>
+                        <td>1-0</td>
+                        <td>2-0</td>
+                        <td>0-2</td>
+                        <td>0-2</td>
+                        <td class="same-player-cell"></td>
+                        <td class="highlight-totals">3</td>
+                        <td class="highlight-totals">5</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- TABLA DE RANKING EN TIEMPO REAL -->
+        <div>
+            <table class="ranking-table">
+                <thead>
+                    <tr>
+                        <th>Pos</th>
+                        <th>Ranking Oficial</th>
+                    </tr>
+                </thead>
+                <tbody id="ranking-body">
+                    <!-- Se genera dinámicamente con las fórmulas funcionales del Script -->
+                </tbody>
+            </table>
+        </div>
     </div>
 
-    <script src="script.js"></script>
+        <!-- TABLA DE HISTORIAL DE PARTIDOS ABAJO -->
+    <div class="tables-wrapper" style="margin-top: 40px; grid-template-columns: 1fr;">
+        <div>
+            <h3 style="color: var(--sc2-blue); text-transform: uppercase; font-size: 1.1rem; margin-bottom: 15px;">Historial de Enfrentamientos Directos</h3>
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>Winner</th>
+                        <th>Loser</th>
+                        <th>Partido</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Goku2001</td><td>Vergatron</td><td>2</td></tr>
+                    <tr><td>Goku2001</td><td>Vergatron</td><td>1</td></tr>
+                    <tr><td>Snake</td><td>Vergatron</td><td>1</td></tr>
+                    <tr><td>Vergatron</td><td>Evangelion</td><td>1</td></tr>
+                    <tr><td>Vergatron</td><td>Fer</td><td>1</td></tr>
+                    <tr><td>Goku2001</td><td>Gladiator</td><td>2</td></tr>
+                    <tr><td>Goku2001</td><td>Gladiator</td><td>1</td></tr>
+                    <tr><td>Goku2001</td><td>Evangelion</td><td>2</td></tr>
+                    <tr><td>Goku2001</td><td>Evangelion</td><td>1</td></tr>
+                    <tr><td>Goku2001</td><td>Fer</td><td>1</td></tr>
+                    <tr><td>Fer</td><td>Evangelion</td><td>1</td></tr>
+                    <tr><td>Gladiator</td><td>Evangelion</td><td>1</td></tr>
+                    <tr><td>Fer</td><td>Gladiator</td><td>1</td></tr>
+                    <tr><td>Snake</td><td>Vergatron</td><td>2</td></tr>
+                    <tr><td>Vergatron</td><td>Gladiator</td><td>2</td></tr>
+                    <tr><td>Vergatron</td><td>Gladiator</td><td>1</td></tr>
+                    <tr><td>Snake</td><td>Gladiator</td><td>1</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Función emuladora de fórmulas de Excel para calcular y ordenar el Ranking de forma automática
+    function actualizarRankingExcel() {
+        const filas = document.querySelectorAll("#matriz-competidores tbody tr");
+        let jugadores = [];
+
+        filas.forEach(fila => {
+            const nombre = fila.cells[0].innerText;
+            const puntos = parseInt(fila.cells[9].innerText) || 0;
+            jugadores.push({ nombre, puntos });
+        });
+
+        // Simula la fórmula =ORDENAR.POR() de Excel
+        jugadores.sort((a, b) => b.puntos - a.puntos);
+
+        const rankingBody = document.getElementById("ranking-body");
+        rankingBody.innerHTML = "";
+
+        jugadores.forEach((jugador, index) => {
+            const row = document.createElement("tr");
+            
+            // Estilos para destacar los primeros puestos
+            let colorPos = "#fff";
+            if(index === 0) colorPos = "#ffd700"; // Oro
+            if(index === 1) colorPos = "#c0c0c0"; // Plata
+            if(index === 2) colorPos = "#cd7f32"; // Bronce
+
+            row.innerHTML = `
+                <td style="color: ${colorPos}">${index + 1}°</td>
+                <td style="text-align: left; padding-left: 20px;">${jugador.nombre}</td>
+            `;
+            rankingBody.appendChild(row);
+        });
+    }
+
+    // Ejecutar el cálculo automático al cargar la página web
+    document.addEventListener("DOMContentLoaded", actualizarRankingExcel);
+</script>
+
 </body>
 </html>
