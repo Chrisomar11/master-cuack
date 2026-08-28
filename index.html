@@ -188,7 +188,6 @@
     
     // ⚠️ REEMPLAZA ESTE ENLACE ENTRE COMILLAS POR EL ENLACE .CSV QUE COPIASTE EN EL PASO 2 ⚠️
     const URL_GOOGLE_SHEETS = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS2Sw3bvIa3GNYWiozPUo2LLg081ZuT1F3YaGzUaD3joXzRkqcJNpwtC1vM6tsmbUpyMOhoXJM3LRd_/pub?output=csv";
-
     async function cargarDatosDesdeGoogle() {
         try {
             const respuesta = await fetch(URL_GOOGLE_SHEETS);
@@ -200,9 +199,9 @@
             
             for (let i = 1; i < lineas.length; i++) {
                 if (!lineas[i].trim()) continue;
-                // Separar por comas teniendo en cuenta comillas si las hay
                 const columnas = lineas[i].split(",");
                 
+                // Asegurar la correcta extracción de columnas del Excel limpiando comillas dobles
                 partidas.push({
                     winner: columnas[0].replace(/"/g, "").trim(),
                     loser: columnas[1].replace(/"/g, "").trim(),
@@ -213,17 +212,17 @@
 
             procesarYRenderizar(partidas);
         } catch (error) {
-            console.error("Error cargando los datos del torneo: ", error);
+            console.error("Error cargando los datos del torneo desde Google Sheets: ", error);
         }
     }
 
     function procesarYRenderizar(partidas) {
-        // Ajustar anchos fijos de columnas
+        // Ajustar anchos fijos de columnas para perfecta simetría visual
         const columnasCabecera = document.querySelectorAll("#matriz-competidores thead th");
         for (let j = 1; j <= 7; j++) {
             if(columnasCabecera[j]) {
-                columnasCabecera[j].style.width = "60px";
-                columnasCabecera[j].style.minWidth = "60px";
+                columnasCabecera[j].style.width = "90px";
+                columnasCabecera[j].style.minWidth = "90px";
             }
         }
 
@@ -238,18 +237,40 @@
             });
         });
 
-        // Procesar partidas del Excel
+        // 1. Mapear todo el historial de enfrentamientos del Excel a la matriz balanceada
         partidas.forEach(p => {
             if (estadisticas[p.winner] && estadisticas[p.loser]) {
                 matrizVersus[p.winner][p.loser].ganados++;
                 matrizVersus[p.loser][p.winner].perdidos++;
-                
-                estadisticas[p.winner].victorias++;
-                estadisticas[p.winner].puntos += 1; // 1 puntos por victoria
             }
         });
 
-        // Renderizar la Matriz
+        // 2. Calcular puntos según tus nuevas reglas basadas en el marcador acumulado final contra cada rival
+        listaJugadores.forEach(jugador => {
+            listaJugadores.forEach(rival => {
+                if (jugador !== rival) {
+                    const juego = matrizVersus[jugador][rival];
+                    
+                    // Si el jugador de la fila le ganó al de la columna
+                    if (juego.ganados > juego.perdidos) {
+                        estadisticas[jugador].victorias++; // Registra la victoria global
+                        
+                        // REGLAS MATEMÁTICAS SOLICITADAS:
+                        if (juego.ganados === 2 && juego.perdidos === 0) {
+                            estadisticas[jugador].puntos += 3; // Victoria 2-0 da 3 Puntos
+                        } else if (juego.ganados === 2 && juego.perdidos === 1) {
+                            estadisticas[jugador].puntos += 2; // Victoria 2-1 da 2 Puntos
+                        } else if (juego.ganados === 1 && juego.perdidos === 0) {
+                            estadisticas[jugador].puntos += 1; // Victoria 1-0 da 1 Punto
+                        } else {
+                            estadisticas[jugador].puntos += 1; // Respaldo por defecto
+                        }
+                    }
+                }
+            });
+        });
+
+        // 3. Renderizar la Matriz de posiciones en base a los cálculos
         const matrizBody = document.getElementById("matriz-body");
         matrizBody.innerHTML = "";
 
@@ -281,7 +302,7 @@
             matrizBody.appendChild(tr);
         });
 
-        // Renderizar Historial abajo
+        // 4. Renderizar Historial abajo (Leyendo los links reales agregados en Sheets)
         const historyBody = document.getElementById("history-body");
         historyBody.innerHTML = "";
         partidas.forEach(p => {
@@ -295,7 +316,7 @@
             historyBody.appendChild(tr);
         });
 
-        // Renderizar Ranking Dinámico con Corona
+        // 5. Renderizar Ranking Dinámico con Corona para el Líder
         let podio = Object.keys(estadisticas).map(name => ({ name, puntos: estadisticas[name].puntos }));
         podio.sort((a,b) => b.puntos - a.puntos);
 
