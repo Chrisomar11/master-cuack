@@ -289,7 +289,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- REEMPLAZA EL '#' POR TU ENLACE EN CADA FILA -->
+                           <!-- REEMPLAZA EL '#' POR TU ENLACE EN CADA FILA -->
                     <tr><td>Goku2001</td><td>Vergatron</td><td>2</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
                     <tr><td>Goku2001</td><td>Vergatron</td><td>1</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
                     <tr><td>Snake</td><td>Vergatron</td><td>1</td><td><a class="btn-replay" href="#" target="_blank">Ver Replay</a></td></tr>
@@ -315,12 +315,24 @@
 
 <script>
     function procesarTablaYRanking() {
+        const tablaMatriz = document.getElementById("matriz-competidores");
+        const columnasCabecera = tablaMatriz.querySelectorAll("thead th");
+        
+        // Asigna un ancho fijo y uniforme a todas las columnas de los jugadores (de la columna 1 a la 7)
+        // La columna 0 (PLAYERS) y las finales (Victorias/Puntos) mantienen su tamaño natural ajustado
+        for (let j = 1; j <= 7; j++) {
+            if (columnasCabecera[j]) {
+                columnasCabecera[j].style.width = "90px";
+                columnasCabecera[j].style.minWidth = "90px";
+            }
+        }
+
         const filas = document.querySelectorAll("#matriz-competidores tbody tr");
         let jugadores = [];
 
         filas.forEach(fila => {
             const nombre = fila.cells[0].innerText;
-            const puntos = parseInt(fila.cells[9].innerText) || 0;
+            const puntos = parseInt(fila.cells[9].innerText) || 0; // Lee de la columna Puntos
             jugadores.push({ nombre, puntos });
 
             // Formato condicional inteligente para las celdas de marcadores (columnas 1 a 7)
@@ -328,7 +340,6 @@
                 const celda = fila.cells[i];
                 const texto = celda.innerText.trim();
 
-                // Valida si la celda contiene un formato de marcador como "X-Y"
                 if (/^\d+-\d+$/.test(texto)) {
                     const [golesIzquierda, golesDerecha] = texto.split('-').map(Number);
 
@@ -352,13 +363,21 @@
         jugadores.forEach((jugador, index) => {
             const row = document.createElement("tr");
             let colorPos = "#fff";
-            if(index === 0) colorPos = "#ffd700";
-            if(index === 1) colorPos = "#c0c0c0";
-            if(index === 2) colorPos = "#cd7f32";
+            let corona = "";
+
+            // Asignación de colores por podio y corona para el primer puesto
+            if (index === 0) {
+                colorPos = "#ffd700"; // Oro
+                corona = " <span style='color: #ffd700; margin-left: 5px; font-size: 1.1rem;'>👑</span>";
+            }
+            if (index === 1) colorPos = "#c0c0c0"; // Plata
+            if (index === 2) colorPos = "#cd7f32"; // Bronce
 
             row.innerHTML = `
                 <td style="color: ${colorPos}">${index + 1}°</td>
-                <td style="text-align: left; padding-left: 20px;">${jugador.nombre}</td>
+                <td style="text-align: left; padding-left: 20px; color: ${index === 0 ? '#ffd700' : '#fff'}">
+                    ${jugador.nombre}${corona}
+                </td>
             `;
             rankingBody.appendChild(row);
         });
@@ -369,3 +388,4 @@
 
 </body>
 </html>
+
